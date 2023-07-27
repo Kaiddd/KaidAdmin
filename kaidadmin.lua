@@ -363,11 +363,13 @@ end)
 
 UI.CommandBar.Visible = false
 
+local twcmdb = tws:Create(UI.CommandBar,TweenInfo.new(.2,Enum.EasingStyle.Linear,Enum.EasingDirection.Out,0,false,.1),{["Position"]=UDim2.new(.5,0,.95,0)})
+local cbposcache = UDim2.new(.5,0,1.25,0)
 uis.InputBegan:Connect(function(input,locked)
 	if input.KeyCode == Enum.KeyCode.Semicolon and not locked then
-		UI.CommandBar.Position = UDim2.new(.5,0,1.25,0)
+		UI.CommandBar.Position = cbposcache
 		UI.CommandBar.Visible = true
-		tws:Create(UI.CommandBar,TweenInfo.new(.2,Enum.EasingStyle.Linear,Enum.EasingDirection.Out,0,false,.1),{["Position"]=UDim2.new(.5,0,.95,0)}):Play()
+		twcmdb:Play()
 		task.wait()
 		UI.CommandBar.CommandInput.Text = ""
 		UI.CommandBar.CommandInput:CaptureFocus()
@@ -378,13 +380,13 @@ end)
 
 -- Command intellisense uwu
 local intellisenseExpanded = false
-local sizecache1 = UDim2.new(.8,0,0,12)
-local poscache1 = UDim2.new(.1,0,-.2,0)
+local isenssizecache = UDim2.new(.8,0,0,12)
+local isensposcache = UDim2.new(.1,0,-.2,0)
 
 local tw1 = tws:Create(UI.CommandBar.IntellisenseFrame,TweenInfo.new(.2,Enum.EasingStyle.Linear,Enum.EasingDirection.Out,0,false,.1),{["Position"]=UDim2.new(.1,0,-3,-3)})
 local tw2 = tws:Create(UI.CommandBar.IntellisenseFrame,TweenInfo.new(.2,Enum.EasingStyle.Linear,Enum.EasingDirection.Out,0,false,.1),{["Size"]=UDim2.new(.8,0,3,0)})
-local tw3 = tws:Create(UI.CommandBar.IntellisenseFrame,TweenInfo.new(.2,Enum.EasingStyle.Linear,Enum.EasingDirection.Out,0,false,.1),{["Size"]=sizecache1})
-local tw4 = tws:Create(UI.CommandBar.IntellisenseFrame,TweenInfo.new(.2,Enum.EasingStyle.Linear,Enum.EasingDirection.Out,0,false,.1),{["Position"]=poscache1})
+local tw3 = tws:Create(UI.CommandBar.IntellisenseFrame,TweenInfo.new(.2,Enum.EasingStyle.Linear,Enum.EasingDirection.Out,0,false,.1),{["Size"]=isenssizecache})
+local tw4 = tws:Create(UI.CommandBar.IntellisenseFrame,TweenInfo.new(.2,Enum.EasingStyle.Linear,Enum.EasingDirection.Out,0,false,.1),{["Position"]=isensposcache})
 
 UI.CommandBar.CommandInput:GetPropertyChangedSignal("Text"):Connect(function()
 	if UI.CommandBar.CommandInput.Text:sub(#UI.CommandBar.CommandInput.Text,#UI.CommandBar.CommandInput.Text) == "	" then
@@ -398,8 +400,8 @@ UI.CommandBar.CommandInput:GetPropertyChangedSignal("Text"):Connect(function()
 		UI.CommandBar.Intellisense.Text = getClosestCommandString(cmdRecommendations[1],UI.CommandBar.CommandInput.Text)
 		if not intellisenseExpanded then
 			intellisenseExpanded = true
-			UI.CommandBar.IntellisenseFrame.Size = sizecache1
-			UI.CommandBar.IntellisenseFrame.Position = poscache1
+			UI.CommandBar.IntellisenseFrame.Size = isenssizecache
+			UI.CommandBar.IntellisenseFrame.Position = isensposcache
 			UI.CommandBar.IntellisenseFrame.Visible = true
 			tw1:Play()
 			tw2:Play()
