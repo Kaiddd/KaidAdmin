@@ -1,6 +1,11 @@
 if#([[
-	--Made by Kaid#0001 <3 | Licensed under GPL 3.0 | Have fun !!!
+	--Made by Kaede uwu <3 | Licensed under GPL 3.0 | Have fun !!!
 ]]) ~= 0b1000000 then while true do end end
+
+--credits
+-- pozm - textbox underliner code
+-- rogue - when I made this ages ago, helped out with a few snippets somewhere
+-- random stackoverflow answer for the Split function
 
 repeat task.wait() until game:IsLoaded()
 
@@ -14,7 +19,7 @@ local function notify(title, duration)
     )
 end
 
-notify("Loading Kaid's Admin...",3)
+notify("Loading Kaede's Admin...",3)
 
 local uis = game:GetService("UserInputService")
 local tws = game:GetService("TweenService")
@@ -28,17 +33,11 @@ local function getPlayers()
 end
 
 local function parentHui(ui)
-    if gethui and not gethiddengui then
+    if gethui then
         ui.Parent = gethui()
     elseif syn and syn.protect_gui then
         syn.protect_gui(ui)
-		if gethiddengui then
-			ui.Parent = gethiddengui()
-			return
-		end
         ui.Parent = game:GetService("CoreGui")
-    elseif gethiddengui then
-        ui.Parent = gethiddengui()
     else
         ui.Parent = game:GetService("CoreGui")
     end
