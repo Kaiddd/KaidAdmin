@@ -201,17 +201,17 @@ local function createCommand(name,names,init,onRun,gameIds)
 
 	for i,v in pairs(names) do
 		if v ~= v:lower() then
-			error("One of command \"names\" contains an uppercase character, this will not work.")
+			error("One of \""..name.."\" command \"names\" contains an uppercase character, this will not work.")
 			return false
 		end
 	end
 
 	if name:lower() == name then
-		warn("Warning | Command name does not include capitalization, is this on purpose?")
+		warn("Warning | (\""..name.."\") Command name does not include capitalization, is this on purpose?")
 	end
 
 	if type(names) ~= "table" then
-		error("Invalid Command Names | Expected table, got "..typeof(names))
+		error("(\""..name.."\") Invalid Command \"names\" | Expected table, got "..typeof(names))
 		return false
 	end
 
@@ -226,7 +226,7 @@ local function createCommand(name,names,init,onRun,gameIds)
 			return false
 		end
 	elseif gameIds then
-		warn("GameIds Argument is supplied but is not of type table | This argument will currently be ignored.")
+		warn("(\""..name.."\") GameIds Argument is supplied but is not of type table | This argument will currently be ignored. | For a generic game command, please do not supply this argument.")
 	end
 
 	local command = {}
