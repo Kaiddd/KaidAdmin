@@ -195,7 +195,7 @@ end
 
 local function createCommand(name,names,init,onRun,gameIds)
 	if type(name) ~= "string" then
-		error("Invalid Command Name | Expected string, got "..typeof(names))
+		error("Invalid Command Name | Expected string, got "..typeof(name))
 		return false
 	end
 
