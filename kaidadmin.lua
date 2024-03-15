@@ -36,9 +36,6 @@ end
 local function parentHui(ui)
     if gethui then
         ui.Parent = gethui()
-    elseif syn and syn.protect_gui then
-        syn.protect_gui(ui)
-        ui.Parent = game:GetService("CoreGui")
     else
         ui.Parent = game:GetService("CoreGui")
     end
