@@ -29,7 +29,9 @@ local plrs = game:GetService("Players")
 local plr = plrs.LocalPlayer
 local UI = game:GetObjects("rbxassetid://10789324558")[1]
 
-local getPlayers = plrs.GetPlayers
+local function getPlayers()
+	return plrs:GetPlayers()
+end
 
 local function parentHui(ui)
     if gethui then
